@@ -62,6 +62,7 @@ option(HAS_MEMORY_BREAKPOINTS "Add support for memory breakpoints to the interpr
 option(USE_LTO "Use LTO for building" ON)
 option(BUILD_RPCS3_TESTS "Build RPCS3 unit tests." OFF)
 option(RUN_RPCS3_TESTS "Run RPCS3 unit tests. Requires BUILD_RPCS3_TESTS" OFF)
+option(ENABLE_MODERN_MANAGER "Enable modern PS3-style game manager UI" OFF)
 
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/buildfiles/cmake")
 
