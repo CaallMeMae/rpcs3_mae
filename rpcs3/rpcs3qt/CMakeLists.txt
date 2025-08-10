@@ -169,12 +169,16 @@ add_library(rpcs3_ui STATIC
 
 if(ENABLE_MODERN_MANAGER)
     target_sources(rpcs3_ui PRIVATE
-        ../Emu/GUI/modern/ModernManagerWindow.cpp
-        ../Emu/GUI/modern/ModernManagerWindow.h
-        ../Emu/GUI/modern/ModernLibraryModel.cpp
-        ../Emu/GUI/modern/ModernLibraryModel.h
-        ../Emu/GUI/modern/resources/modern_manager.qrc
-    )
+    ../Emu/GUI/modern/ModernManagerWindow.cpp
+    ../Emu/GUI/modern/ModernManagerWindow.h
+    ../Emu/GUI/modern/ModernLibraryModel.cpp
+    ../Emu/GUI/modern/ModernLibraryModel.h
+    ../Emu/GUI/modern/LibraryMetadataStore.cpp
+    ../Emu/GUI/modern/LibraryMetadataStore.h
+    ../Emu/GUI/modern/ModernTelemetry.cpp
+    ../Emu/GUI/modern/ModernTelemetry.h
+    ../Emu/GUI/modern/resources/modern_manager.qrc
+)
     target_compile_definitions(rpcs3_ui PRIVATE ENABLE_MODERN_MANAGER)
 endif()
 
