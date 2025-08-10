@@ -167,6 +167,17 @@ add_library(rpcs3_ui STATIC
     "../resources.qrc"
 )
 
+if(ENABLE_MODERN_MANAGER)
+    target_sources(rpcs3_ui PRIVATE
+        ../Emu/GUI/modern/ModernManagerWindow.cpp
+        ../Emu/GUI/modern/ModernManagerWindow.h
+        ../Emu/GUI/modern/ModernLibraryModel.cpp
+        ../Emu/GUI/modern/ModernLibraryModel.h
+        ../Emu/GUI/modern/resources/modern_manager.qrc
+    )
+    target_compile_definitions(rpcs3_ui PRIVATE ENABLE_MODERN_MANAGER)
+endif()
+
 if(HAS_MEMORY_BREAKPOINTS)
     target_compile_definitions(rpcs3_ui PRIVATE RPCS3_HAS_MEMORY_BREAKPOINTS)
 endif()

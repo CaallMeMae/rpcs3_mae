@@ -1,11 +1,12 @@
 #pragma once
 
+#include <QAction>
 #include <QActionGroup>
-#include <QMainWindow>
 #include <QIcon>
 #include <QList>
-#include <QUrl>
+#include <QMainWindow>
 #include <QMimeData>
+#include <QUrl>
 
 #include "update_manager.h"
 #include "settings.h"
@@ -38,6 +39,13 @@ namespace Ui
 	class main_window;
 }
 
+#ifdef ENABLE_MODERN_MANAGER
+namespace rpcs3::ui
+{
+	class ModernManagerWindow;
+}
+#endif
+
 class main_window : public QMainWindow
 {
 	Q_OBJECT
@@ -68,7 +76,7 @@ class main_window : public QMainWindow
 	};
 
 public:
-	explicit main_window(std::shared_ptr<gui_settings> gui_settings, std::shared_ptr<emu_settings> emu_settings, std::shared_ptr<persistent_settings> persistent_settings, QWidget *parent = nullptr);
+	explicit main_window(std::shared_ptr<gui_settings> gui_settings, std::shared_ptr<emu_settings> emu_settings, std::shared_ptr<persistent_settings> persistent_settings, QWidget* parent = nullptr);
 	~main_window();
 	bool Init(bool with_cli_boot);
 	QIcon GetAppIcon() const;
@@ -125,8 +133,8 @@ private Q_SLOTS:
 	void update_gui_pad_thread();
 
 protected:
-	void closeEvent(QCloseEvent *event) override;
-	void mouseDoubleClickEvent(QMouseEvent *event) override;
+	void closeEvent(QCloseEvent* event) override;
+	void mouseDoubleClickEvent(QMouseEvent* event) override;
 	void dropEvent(QDropEvent* event) override;
 	void dragEnterEvent(QDragEnterEvent* event) override;
 	void dragMoveEvent(QDragMoveEvent* event) override;
@@ -173,8 +181,8 @@ private:
 		q_pair_list entries;
 		QList<QAction*> actions;
 	};
-	recent_game_wrapper m_recent_game {};
-	recent_game_wrapper m_recent_save {};
+	recent_game_wrapper m_recent_game{};
+	recent_game_wrapper m_recent_save{};
 
 	std::shared_ptr<gui_game_info> m_selected_game;
 
@@ -183,7 +191,7 @@ private:
 	QActionGroup* m_category_visible_act_group = nullptr;
 
 	// Dockable widget frames
-	QMainWindow *m_mw = nullptr;
+	QMainWindow* m_mw = nullptr;
 	log_frame* m_log_frame = nullptr;
 	debugger_frame* m_debugger_frame = nullptr;
 	game_list_frame* m_game_list_frame = nullptr;
@@ -197,6 +205,11 @@ private:
 	QAction* m_download_menu_action = nullptr;
 
 	shortcut_handler* m_shortcut_handler = nullptr;
+
+#ifdef ENABLE_MODERN_MANAGER
+	QAction* m_modern_manager_act = nullptr;
+	std::unique_ptr<rpcs3::ui::ModernManagerWindow> m_modern_manager_window;
+#endif
 
 	std::unique_ptr<gui_pad_thread> m_gui_pad_thread;
 };
