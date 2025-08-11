@@ -177,7 +177,16 @@ if(ENABLE_MODERN_MANAGER)
     ../Emu/GUI/modern/LibraryMetadataStore.h
     ../Emu/GUI/modern/ModernTelemetry.cpp
     ../Emu/GUI/modern/ModernTelemetry.h
+    ../Emu/GUI/modern/HomeView.cpp
+    ../Emu/GUI/modern/HomeView.h
+    ../Emu/GUI/modern/FocusNav.cpp
+    ../Emu/GUI/modern/FocusNav.h
+    ../Emu/GUI/modern/BigTile.cpp
+    ../Emu/GUI/modern/BigTile.h
+    ../Emu/GUI/modern/ModernSettingsPanel.cpp
+    ../Emu/GUI/modern/ModernSettingsPanel.h
     ../Emu/GUI/modern/resources/modern_manager.qrc
+    ../Emu/GUI/modern/resources/console.qrc
 )
     target_compile_definitions(rpcs3_ui PRIVATE ENABLE_MODERN_MANAGER)
 endif()

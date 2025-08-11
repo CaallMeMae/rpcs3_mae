@@ -198,6 +198,17 @@ bool main_window::Init([[maybe_unused]] bool with_cli_boot)
 	CreateDockWindows();
 	CreateConnects();
 
+#ifdef ENABLE_MODERN_MANAGER
+	if (m_gui_settings->GetValue("modern", "start_console_mode", false).toBool())
+	{
+		if (!m_modern_manager_window)
+		{
+			m_modern_manager_window = std::make_unique<rpcs3::ui::ModernManagerWindow>(this);
+		}
+		m_modern_manager_window->showFullScreen();
+	}
+#endif
+
 	setMinimumSize(350, minimumSizeHint().height()); // seems fine on win 10
 	setWindowTitle(QString::fromStdString("RPCS3 " + rpcs3::get_verbose_version()));
 
