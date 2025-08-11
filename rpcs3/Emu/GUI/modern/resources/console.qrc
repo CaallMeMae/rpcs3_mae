@@ -1,0 +1,12 @@
+<RCC>
+    <qresource prefix="/console">
+        <file>home.svg</file>
+        <file>library.svg</file>
+        <file>friends.svg</file>
+        <file>lobby.svg</file>
+        <file>settings.svg</file>
+        <file>continue.svg</file>
+        <file>install_pkg.svg</file>
+        <file>add_folder.svg</file>
+    </qresource>
+</RCC>
