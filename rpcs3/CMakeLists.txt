@@ -76,6 +76,16 @@ if (NOT ANDROID)
           )
       endif()
 
+      if(ENABLE_SMART_RUNTIME)
+          target_sources(rpcs3_lib PRIVATE
+              ${CMAKE_SOURCE_DIR}/jit_baking/runtime_fingerprint.cpp
+          )
+          target_include_directories(rpcs3_lib PRIVATE
+              ${CMAKE_SOURCE_DIR}/jit_baking/include
+          )
+      endif()
+
+
     target_link_libraries(rpcs3_lib
         PUBLIC
             3rdparty::stblib
