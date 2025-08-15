@@ -79,7 +79,8 @@ if (NOT ANDROID)
             3rdparty::zlib
             3rdparty::opencv
             3rdparty::fusion
-            ${ADDITIONAL_LIBS})
+            ${ADDITIONAL_LIBS}
+            jit_baking)
 
     # Unix display manager
     if(X11_FOUND)

@@ -12,6 +12,10 @@ project(rpcs3 LANGUAGES C CXX)
 set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
+if(NOT EXISTS "${CMAKE_SOURCE_DIR}/jit_baking/CMakeLists.txt")
+    message(FATAL_ERROR "Missing LLVM JIT Baking module directory at: ${CMAKE_SOURCE_DIR}/jit_baking")
+endif()
+
 if(CMAKE_CXX_COMPILER_ID STREQUAL "GNU")
     if(CMAKE_CXX_COMPILER_VERSION VERSION_LESS 11)
         message(FATAL_ERROR "RPCS3 requires at least gcc-11.")
@@ -188,6 +192,7 @@ set(CMAKE_RUNTIME_OUTPUT_DIRECTORY_RELWITHDEBINFO "${PROJECT_BINARY_DIR}/bin")
 if(BUILD_RPCS3_TESTS)
     enable_testing()
 endif()
+add_subdirectory(jit_baking)
 add_subdirectory(rpcs3)
 
 set_directory_properties(PROPERTIES VS_STARTUP_PROJECT rpcs3)
