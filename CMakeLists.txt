@@ -68,6 +68,11 @@ option(BUILD_RPCS3_TESTS "Build RPCS3 unit tests." OFF)
 option(RUN_RPCS3_TESTS "Run RPCS3 unit tests. Requires BUILD_RPCS3_TESTS" OFF)
 option(ENABLE_MODERN_MANAGER "Enable modern PS3-style game manager UI" OFF)
 
+option(ENABLE_JIT_CACHE "Enable LLVM JIT cache" ON)
+if(ENABLE_JIT_CACHE)
+    add_compile_definitions(ENABLE_JIT_CACHE)
+endif()
+
 option(ENABLE_ASAN "Enable AddressSanitizer" OFF)
 option(ENABLE_UBSAN "Enable UndefinedBehaviorSanitizer" OFF)
 option(ENABLE_TSAN "Enable ThreadSanitizer (Linux/macOS only)" OFF)
