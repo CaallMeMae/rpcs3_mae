@@ -64,7 +64,13 @@ option(BUILD_RPCS3_TESTS "Build RPCS3 unit tests." OFF)
 option(RUN_RPCS3_TESTS "Run RPCS3 unit tests. Requires BUILD_RPCS3_TESTS" OFF)
 option(ENABLE_MODERN_MANAGER "Enable modern PS3-style game manager UI" OFF)
 
+option(ENABLE_ASAN "Enable AddressSanitizer" OFF)
+option(ENABLE_UBSAN "Enable UndefinedBehaviorSanitizer" OFF)
+option(ENABLE_TSAN "Enable ThreadSanitizer (Linux/macOS only)" OFF)
+option(ENABLE_THINLTO "Enable ThinLTO for supported targets" OFF)
+
 set(CMAKE_MODULE_PATH "${CMAKE_CURRENT_SOURCE_DIR}/buildfiles/cmake")
+include(Sanitizers)
 
 include(CheckCXXCompilerFlag)
 
