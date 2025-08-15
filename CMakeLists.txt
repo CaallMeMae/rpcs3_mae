@@ -75,6 +75,11 @@ endif()
 
 option(ENABLE_ASYNC_WARMUP "Enable background startup warmup" ON)
 
+option(ENABLE_SMART_RUNTIME "Enable fingerprint-based auto config" ON)
+if(ENABLE_SMART_RUNTIME)
+    add_compile_definitions(ENABLE_SMART_RUNTIME)
+endif()
+
 option(ENABLE_ASAN "Enable AddressSanitizer" OFF)
 option(ENABLE_UBSAN "Enable UndefinedBehaviorSanitizer" OFF)
 option(ENABLE_TSAN "Enable ThreadSanitizer (Linux/macOS only)" OFF)
