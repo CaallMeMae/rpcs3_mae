@@ -1,1 +1,33 @@
+Checks: >
+  bugprone-*,
+  modernize-*,
+  performance-*,
+  readability-*,
+  portability-*,
+  cppcoreguidelines-interfaces-global-init,
+  cppcoreguidelines-avoid-goto
 
+WarningsAsErrors: ''
+
+HeaderFilterRegex: '.*'
+FormatStyle: none
+UseColor: true
+AnalyzeTemporaryDtors: false
+
+CheckOptions:
+  - key: modernize-use-trailing-return-type
+    value: 'false'
+  - key: cppcoreguidelines-avoid-magic-numbers
+    value: 'false'
+  - key: readability-identifier-naming.VariableCase
+    value: lower_case
+  - key: readability-identifier-naming.ClassCase
+    value: CamelCase
+  - key: readability-identifier-naming.FunctionCase
+    value: CamelCase
+  - key: readability-identifier-naming.NamespaceCase
+    value: lower_case
+  - key: readability-identifier-naming.PrivateMemberPrefix
+    value: m_
+
+chore: add CI matrix, static analysis, and regression scaffold
