@@ -131,6 +131,8 @@ if (NOT ANDROID)
             rpcs3_lib
     )
 
+    enable_project_sanitizers(rpcs3)
+
     if(USE_PRECOMPILED_HEADERS)
         target_precompile_headers(rpcs3 PRIVATE stdafx.h)
     endif()
