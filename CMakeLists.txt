@@ -73,6 +73,8 @@ if(ENABLE_JIT_CACHE)
     add_compile_definitions(ENABLE_JIT_CACHE)
 endif()
 
+option(ENABLE_ASYNC_WARMUP "Enable background startup warmup" ON)
+
 option(ENABLE_ASAN "Enable AddressSanitizer" OFF)
 option(ENABLE_UBSAN "Enable UndefinedBehaviorSanitizer" OFF)
 option(ENABLE_TSAN "Enable ThreadSanitizer (Linux/macOS only)" OFF)

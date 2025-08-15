@@ -58,14 +58,23 @@ if (NOT ANDROID)
         target_compile_definitions(rpcs3_lib PRIVATE UNICODE _UNICODE)
     endif()
 
-     set_target_properties(rpcs3_lib
-        PROPERTIES
-            AUTOMOC ON
-            AUTOUIC ON)
+      set_target_properties(rpcs3_lib
+          PROPERTIES
+              AUTOMOC ON
+              AUTOUIC ON)
 
-    if(ENABLE_JIT_CACHE)
-        target_include_directories(rpcs3_lib PRIVATE ${CMAKE_SOURCE_DIR}/jit_baking/include)
-    endif()
+      if(ENABLE_JIT_CACHE)
+          target_include_directories(rpcs3_lib PRIVATE ${CMAKE_SOURCE_DIR}/jit_baking/include)
+      endif()
+
+      if(ENABLE_ASYNC_WARMUP)
+          target_sources(rpcs3_lib PRIVATE
+              ${CMAKE_SOURCE_DIR}/jit_baking/startup_warmup.cpp
+          )
+          target_include_directories(rpcs3_lib PRIVATE
+              ${CMAKE_SOURCE_DIR}/jit_baking/include
+          )
+      endif()
 
     target_link_libraries(rpcs3_lib
         PUBLIC
