@@ -1,1 +1,54 @@
+name: Cross-Platform CI
 
+on:
+  push:
+    branches: [ feature/modern-manager ]
+  pull_request:
+    branches: [ feature/modern-manager ]
+
+jobs:
+  build:
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-22.04, macos-14, windows-2022]
+        config: [Release, RelWithDebInfo]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - name: Checkout (with submodules)
+        uses: actions/checkout@v4
+        with:
+          submodules: recursive
+
+      - name: Cache ccache
+        uses: hendrikmuhs/ccache-action@v2
+        with:
+          key: ${{ runner.os }}-${{ matrix.config }}
+
+      - name: Set up dependencies (Linux)
+        if: runner.os == 'Linux'
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y ninja-build ccache clang lld cmake pkg-config \
+            libvulkan-dev libpulse-dev libasound2-dev libudev-dev libevdev-dev \
+            libx11-dev libxext-dev libxrandr-dev libxinerama-dev libxi-dev \
+            libxkbcommon-x11-dev
+
+      - name: Set up dependencies (macOS)
+        if: runner.os == 'macOS'
+        run: |
+          brew update
+          brew install ninja ccache llvm cmake
+
+      - name: Configure
+        run: |
+          cmake -S . -B build -G Ninja \
+            -DCMAKE_BUILD_TYPE=${{ matrix.config }} \
+            -DENABLE_ASAN=OFF -DENABLE_UBSAN=OFF -DENABLE_TSAN=OFF \
+            -DENABLE_THINLTO=OFF
+
+      - name: Build
+        run: cmake --build build --target rpcs3 -j 4
+
+      - name: Smoke Test Placeholder
+        run: echo "This will be replaced by real validation in future tasks."
